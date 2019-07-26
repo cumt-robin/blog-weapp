@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-cell": "vant-weapp/cell/index",
+    "van-nav-bar": "vant-weapp/nav-bar/index",
+    "card-article": "/components/card-article/index"
+  }
+}

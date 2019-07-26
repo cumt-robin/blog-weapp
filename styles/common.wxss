@@ -1,0 +1,24 @@
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.loading-wrap {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.img-banner {
+  width: 100%;
+}
+
+.o-hidden {
+  overflow: hidden;
+}

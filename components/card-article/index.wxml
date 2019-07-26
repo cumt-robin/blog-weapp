@@ -1,0 +1,10 @@
+<view class="card-article">
+  <text class="card-title">{{item.article_name}}</text>
+  <image
+    class='img-poster'
+    wx:if="{{item.poster}}"
+    lazy-load
+    mode="aspectFit"
+    src="{{item.poster}}">
+  </image>
+</view>

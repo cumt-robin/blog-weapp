@@ -1,0 +1,4 @@
+.page-detail {
+  padding: 54px 0 30px;
+  background-color: #fff;
+}

@@ -1,0 +1,13 @@
+<view>
+  <van-search
+    value="{{wd}}"
+    placeholder="请输入关键词"
+    use-action-slot
+    shape="round"
+    focus
+    bind:search="onSearchAction"
+    bind:change="onSearchChange"
+  >
+    <view slot="action" bind:tap="onSearchAction">{{controlBtn}}</view>
+  </van-search>
+</view>

@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-cell": "vant-weapp/cell/index",
+    "van-search": "vant-weapp/search/index",
+    "van-notice-bar": "vant-weapp/notice-bar/index",
+    "van-tab": "vant-weapp/tab/index",
+    "van-tabs": "vant-weapp/tabs/index",
+    "card-article": "/components/card-article/index"
+  }
+}

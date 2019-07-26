@@ -1,0 +1,7 @@
+<view>
+  <van-nav-bar
+    title="个人中心"
+    fixed
+    safe-area-inset-top="{{false}}"
+  />
+</view>

@@ -1,0 +1,22 @@
+page {
+  height: 100%;
+  background:#f2f2f2;
+}
+
+.page-top {
+  padding-bottom: 50px;
+}
+
+.page-scroll {
+  position: relative;
+  height: 100vh;
+}
+
+.category-list-wrap {
+  margin-top: 44px;
+  padding: 10px;
+}
+
+.mt-navbar {
+  margin-top: 54px;
+}

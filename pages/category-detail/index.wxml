@@ -1,0 +1,23 @@
+<view>
+  <van-nav-bar
+    title="{{'分类：' + keyword}}"
+    fixed
+    safe-area-inset-top="{{false}}"
+  />
+
+  <scroll-view
+    class='mt-navbar'
+    scroll-y
+    enable-back-to-top
+    bindscrolltolower="onScrollToLower">
+    <van-cell
+      wx:for="{{articles}}"
+      wx:key="id"
+      border="{{false}}"
+      url="{{'/pages/detail/index?id=' + item.id + '&title=' + item.article_name}}">
+      <card-article item="{{item}}"></card-article>
+    </van-cell>
+  </scroll-view>
+</view>
+
+

@@ -1,0 +1,53 @@
+.card-title {
+  font-size: 18px;
+  color: #333;
+  width: 100%;
+  display: block;
+  padding-bottom: 10px;
+}
+
+/* 首页文章卡片 */
+.card-article {
+  text-align: center;
+  border-bottom:1px solid #d8d8d8;
+  padding-bottom:20px;
+}
+.card-article .img-poster {
+  width: 100%;
+  height: 200px;
+}
+
+/* 分类卡片 */
+.card-category {
+  position: relative;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.card-category .card-category__name {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  padding-bottom:4px;
+}
+
+.img-category {
+  width: 100%;
+  height: 120px;
+}
+
+.badge-category {
+  position:absolute;
+  top:0px;
+  right:0px;
+}
+
+.badge-category .van-badge {
+  padding: 0;
+  overflow: visible;
+}
+
+/* 评论卡片 */
+.card-comment {
+  position: relative;
+  text-align: left;
+}

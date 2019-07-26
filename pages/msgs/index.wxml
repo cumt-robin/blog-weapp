@@ -1,0 +1,23 @@
+<view>
+  <van-nav-bar
+    title="留言板"
+    fixed
+    safe-area-inset-top="{{false}}"
+  />
+
+  <scroll-view
+    class='mt-navbar'
+    scroll-y
+    enable-back-to-top
+    bindscrolltolower="onScrollToLower">
+    <text class='msgs-stats'>已有<text class='user-count'>{{userCount}}</text>人在这留下了足迹</text>
+    <text class='msgs-stats'>留言总数：<text class='user-count'>{{commentTotal}}</text>条</text>
+    <van-cell
+      wx:for="{{comments}}"
+      wx:key="id">
+      <view class="card-comment">
+        <view class="van-cell-text">{{item.content}}</view>
+      </view>
+    </van-cell>
+  </scroll-view>
+</view>

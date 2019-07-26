@@ -1,0 +1,7 @@
+<view class="page-top">
+  <home-panel id="home" wx:if="{{activeTab == 'home'}}">首页</home-panel>
+  <category-panel wx:if="{{activeTab == 'category'}}">分类</category-panel>
+  <msgs-panel wx:if="{{activeTab == 'msgs'}}">留言</msgs-panel>
+  <my-panel wx:if="{{activeTab == 'my'}}">我的</my-panel>
+  <index-tabbar active="{{activeTab}}" panels="{{panels}}" bind:changeTab="onTabChange"></index-tabbar>
+</view>

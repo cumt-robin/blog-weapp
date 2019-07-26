@@ -1,0 +1,14 @@
+{
+  "name": "mp-blog",
+  "version": "1.0.0",
+  "description": "Tusi's blog miniprogram",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tusi",
+  "license": "ISC",
+  "dependencies": {
+    "vant-weapp": "^0.5.16"
+  }
+}

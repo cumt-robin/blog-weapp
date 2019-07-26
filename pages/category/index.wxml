@@ -1,0 +1,26 @@
+<view>
+  <van-nav-bar
+    title="文章分类"
+    fixed
+    safe-area-inset-top="{{false}}"
+  />
+  <view class='category-list-wrap'>
+    <van-row gutter="10">
+      <van-col
+        wx:for="{{categoryList}}"
+        wx:key="id"
+        span="8">
+        <view class='card-category' bindtap='onCardTab' data-categoryname="{{item.category_name}}">
+          <van-badge class="badge-category" info="{{item.category_count}}" />
+          <image
+            class="img-category"
+            lazy-load
+            src="{{item.poster || 'http://qncdn.wbjiang.cn/weapp.jpg'}}"
+            mode="aspectFit">
+          </image>
+          <text class='card-category__name'>{{item.category_name}}</text>
+        </view>
+      </van-col>
+    </van-row>
+  </view>
+</view>

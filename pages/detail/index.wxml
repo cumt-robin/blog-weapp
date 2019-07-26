@@ -1,0 +1,8 @@
+<view class='page-detail'>
+  <van-nav-bar
+    title="{{title}}"
+    fixed
+    safe-area-inset-top="{{false}}"
+  />
+  <wemark md="{{md}}" link highlight type="wemark"></wemark>
+</view>
