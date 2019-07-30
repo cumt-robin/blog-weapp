@@ -1,4 +1,4 @@
-<view>
+<view class="{{isIphonex ? 'iphonex' : ''}}">
   <van-nav-bar
     title="文章分类"
     fixed
@@ -23,4 +23,9 @@
       </van-col>
     </van-row>
   </view>
+
+  <bottom-tips
+    wx:if="{{!isLoading}}"
+    content="全部加载完成"
+  />
 </view>

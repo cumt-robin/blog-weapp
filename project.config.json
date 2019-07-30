@@ -14,7 +14,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.0",
+	"libVersion": "2.7.7",
 	"appid": "wxcfa2b76cf409b3e3",
 	"projectname": "mp-blog",
 	"debugOptions": {

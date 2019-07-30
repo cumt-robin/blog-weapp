@@ -1,4 +1,4 @@
-<view>
+<view class="{{isIphonex ? 'iphonex' : ''}}">
   <van-nav-bar
     title="{{'分类：' + keyword}}"
     fixed
@@ -17,6 +17,11 @@
       url="{{'/pages/detail/index?id=' + item.id + '&title=' + item.article_name}}">
       <card-article item="{{item}}"></card-article>
     </van-cell>
+
+    <bottom-tips
+      wx:if="{{!isLoading}}"
+      content="全部加载完成"
+    />
   </scroll-view>
 </view>
 

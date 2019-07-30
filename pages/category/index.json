@@ -4,6 +4,7 @@
     "van-row": "vant-weapp/row/index",
     "van-col": "vant-weapp/col/index",
     "van-nav-bar": "vant-weapp/nav-bar/index",
-    "van-badge": "vant-weapp/badge/index"
+    "van-badge": "vant-weapp/badge/index",
+    "bottom-tips": "/components/bottom-tips/index"
   }
 }

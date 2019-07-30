@@ -1,0 +1,27 @@
+<view class="{{isIphonex ? 'iphonex' : ''}}">
+  <van-nav-bar
+    title="关于博客"
+    fixed
+    safe-area-inset-top="{{false}}"
+  />
+
+  <view class='mt-navbar'>
+    <van-panel title="为什么做这个小程序？">
+      <view class='content-wrap'>
+        <text class='content'>俗话说学以致用，这个小程序就是我学习小程序开发阶段的一个作品。现学现卖，当然还有很多不足，会持续更新优化的。</text>
+      </view>
+    </van-panel>
+
+    <van-panel title="开发时用了mpvue，taro，wepy这些框架吗？">
+      <view class='content-wrap'>
+        <text class='content'>暂时没有，我是一个注重底层基础的开发者，毕竟基础决定上层建筑。当然，我后续会学习框架开发更好的作品。</text>
+      </view>
+    </van-panel>
+
+    <van-panel title="致谢！">
+      <view class='content-wrap'>
+        <text class='content'>如果您觉得我的小程序还不错，可以去留言区支持一下，谢谢啦</text>
+      </view>
+    </van-panel>
+  </view>
+</view>

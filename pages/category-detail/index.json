@@ -2,6 +2,7 @@
   "usingComponents": {
     "van-cell": "vant-weapp/cell/index",
     "van-nav-bar": "vant-weapp/nav-bar/index",
-    "card-article": "/components/card-article/index"
+    "card-article": "/components/card-article/index",
+    "bottom-tips": "/components/bottom-tips/index"
   }
 }

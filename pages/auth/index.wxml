@@ -1,0 +1,17 @@
+<view class='align-center'>
+  <image src="http://qncdn.wbjiang.cn/blog-weapp-logo.png"></image>
+  <bottom-tips
+    custom-class="tips-wrap"
+    content="Tusi博客将获取您的公开信息（昵称，头像等）"
+    line="{{false}}"
+    top="0"
+    font-size="14px"
+  />
+  <button
+    class='btn-auth'
+    type="primary"
+    open-type="getUserInfo"
+    bindgetuserinfo="onGetUserinfo">
+    授权登录
+  </button>
+</view>

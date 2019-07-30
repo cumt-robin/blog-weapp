@@ -1,0 +1,19 @@
+.cell-wrap {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+
+.cell-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.cell-title {
+  margin-left: 5px;
+  color: #333;
+}
+
+.cell-content {
+  margin-left: 10px;
+}

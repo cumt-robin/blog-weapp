@@ -1,23 +1,36 @@
-// pages/home/index.js
+import Toast from '../../utils/toast.js'
+
+const app = getApp()
+
 Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
+  options: {
+    styleIsolation: 'apply-shared'
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    isIphonex: app.globalData.isIphonex,
+    userInfo: null
   },
-
-  /**
-   * 组件的方法列表
-   */
+  lifetimes: {
+    attached() {
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300
+      })
+      // 获取授权信息是异步的，这里再setData一下
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+    }
+  },
   methods: {
-
+    onClickCell(e) {
+      switch (e.target.dataset.type) {
+        case 'comment':
+        case 'msg':
+          Toast.simple('程序猿小哥哥加班玩命中')
+          break
+      }
+    },
+    onScrollToLower() {}
   }
 })

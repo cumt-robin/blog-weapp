@@ -21,12 +21,12 @@ function request(url, data, options = {}) {
           resolve(res.data)
         } else {
           console.error(res)
-          Toast.error(res.msg)
+          Toast.simple(res.msg)
           reject()
         }
       },
       fail: function(res) {
-        Toast.custom('服务器正在升级', 'update')
+        Toast.simple('服务器正在升级')
         console.error(res)
         reject()
       }

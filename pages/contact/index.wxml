@@ -1,0 +1,28 @@
+<view class="{{isIphonex ? 'iphonex' : ''}}">
+  <van-nav-bar
+    title="联系作者"
+    fixed
+    safe-area-inset-top="{{false}}"
+  />
+  <scroll-view
+    class="mt-navbar"
+    scroll-y
+    enable-back-to-top
+    bindscrolltolower="onScrollToLower">
+    <van-cell-group>
+      <van-cell
+        wx:for="{{list}}"
+        wx:key="{{item.label}}"
+        data-content="{{item.content}}"
+        bind:click='copy'>
+        <view class='cell-wrap'>
+          <image class='cell-icon' slot="icon" src="{{item.icon}}"></image>
+          <text class='cell-title' slot="title">{{item.label}}</text>
+          <text class='cell-content'>{{item.content}}</text>
+        </view>
+      </van-cell>
+    </van-cell-group>
+
+    <bottom-tips content="轻触文字即可复制" top="15px"/>
+  </scroll-view>
+</view>

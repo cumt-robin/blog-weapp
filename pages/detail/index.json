@@ -1,6 +1,11 @@
 {
   "usingComponents": {
     "wemark": "../../lib/wemark/wemark",
-    "van-nav-bar": "vant-weapp/nav-bar/index"
+    "van-nav-bar": "vant-weapp/nav-bar/index",
+    "van-tab": "vant-weapp/tab/index",
+    "van-tabs": "vant-weapp/tabs/index",
+    "van-cell": "vant-weapp/cell/index",
+    "bottom-tips": "/components/bottom-tips/index",
+    "card-comment": "/components/card-comment/index"
   }
 }

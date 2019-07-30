@@ -1,4 +1,5 @@
-// pages/search/index.js
+import Toast from "../../utils/toast.js"
+
 Page({
   data: {
     wd: '',
@@ -6,10 +7,7 @@ Page({
   },
   onSearchAction() {
     if (this.data.controlBtn === '搜索') {
-      wx.showToast({
-        title: '搜索功能即将上线...',
-        icon: 'none'
-      })
+      Toast.simple('搜索功能即将上线')
     } else {
       wx.navigateBack()
     }

@@ -1,20 +1,25 @@
 import "./utils/finally-polyfill.js"
+require('./utils/moment-init.js')
 
 // app.js
 App({
   onLaunch: function () {
     console.log('onLaunch', this)
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
+        console.log('login', res)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+    this.checkDevice();
+    this.checkUserSetting();
+  },
+  globalData: {
+    userInfo: null,
+    isIphonex: false
+  },
+  checkUserSetting() {
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -24,19 +29,31 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+              if (this.userinfoCallback) {
+                this.userinfoCallback(true, res)
               }
             }
           })
+        } else {
+          // 未授权，也回调
+          if (this.userinfoCallback) {
+            this.userinfoCallback(false, res)
+          }
         }
       }
     })
   },
-  globalData: {
-    userInfo: null
+  checkDevice() {
+    wx.getSystemInfo({
+      success: res => {
+        // 根据 model 进行判断
+        console.log('system info:', res)
+        if (res.model.indexOf('iPhone X') !== -1) {
+          this.globalData.isIphonex = true
+        }
+      }
+    })
   }
 })

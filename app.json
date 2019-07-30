@@ -6,7 +6,10 @@
     "pages/my/index",
     "pages/detail/index",
     "pages/search/index",
-    "pages/category-detail/index"
+    "pages/category-detail/index",
+    "pages/auth/index",
+    "pages/about/index",
+    "pages/contact/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,7 +1,45 @@
-<view>
+<view class="{{isIphonex ? 'iphonex' : ''}}">
   <van-nav-bar
     title="个人中心"
     fixed
     safe-area-inset-top="{{false}}"
   />
+  <scroll-view
+    class="mt-navbar"
+    scroll-y
+    enable-back-to-top
+    bindscrolltolower="onScrollToLower">
+    <van-cell-group>
+      <van-cell>
+        <view class='avatar-wrap'>
+          <image class='avatar' src="{{userInfo.avatarUrl}}"></image>
+          <text class='nickname'>{{userInfo.nickName}}</text>
+        </view>
+      </van-cell>
+      <van-cell data-type="comment" is-link bind:click="onClickCell">
+        <view class='cell-wrap'>
+          <image class='cell-icon' slot="icon" src="/assets/img/comment.svg"></image>
+          <text class='cell-title' slot="title">我的评论</text>
+        </view>
+      </van-cell>
+      <van-cell data-type="msg" is-link bind:click="onClickCell">
+        <view class='cell-wrap'>
+          <image class='cell-icon' slot="icon" src="/assets/img/msg.svg"></image>
+          <text class='cell-title' slot="title">我的留言</text>
+        </view>
+      </van-cell>
+      <van-cell data-type="contact" is-link url="/pages/contact/index">
+        <view class='cell-wrap'>
+          <image class='cell-icon' slot="icon" src="/assets/img/contact.svg"></image>
+          <text class='cell-title' slot="title">联系作者</text>
+        </view>
+      </van-cell>
+      <van-cell data-type="about" is-link url="/pages/about/index">
+        <view class='cell-wrap'>
+          <image class='cell-icon' slot="icon" src="/assets/img/about.svg"></image>
+          <text class='cell-title' slot="title">关于博客</text>
+        </view>
+      </van-cell>
+    </van-cell-group>
+  </scroll-view>
 </view>

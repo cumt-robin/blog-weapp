@@ -1,23 +1,52 @@
-<view>
+<scroll-view
+  class="page-scroll {{isIphonex ? 'iphonex' : ''}}"
+  scroll-y
+  enable-back-to-top
+  bindscrolltolower="onScrollToLower">
   <van-nav-bar
     title="留言板"
     fixed
     safe-area-inset-top="{{false}}"
   />
 
-  <scroll-view
-    class='mt-navbar'
-    scroll-y
-    enable-back-to-top
-    bindscrolltolower="onScrollToLower">
+  <view class='mt-navbar'>
     <text class='msgs-stats'>已有<text class='user-count'>{{userCount}}</text>人在这留下了足迹</text>
     <text class='msgs-stats'>留言总数：<text class='user-count'>{{commentTotal}}</text>条</text>
-    <van-cell
-      wx:for="{{comments}}"
-      wx:key="id">
-      <view class="card-comment">
-        <view class="van-cell-text">{{item.content}}</view>
-      </view>
-    </van-cell>
-  </scroll-view>
-</view>
+    <view class="card-comment-wrap" bindshowReply="onShowReply">
+      <van-cell
+        wx:for="{{comments}}"
+        wx:for-item="comment"
+        wx:key="id">
+          <card-comment comment="{{comment}}"/>
+      </van-cell>
+    </view>
+
+    <bottom-tips
+      content="别滑了，已经见底了"
+      wx:if="{{total > 0 && comments.length === total}}"
+    />
+  </view>
+</scroll-view>
+
+<van-dialog
+  id="van-dialog"
+  use-slot
+  title="输入回复内容"
+  show="{{showTextarea}}"
+  show-cancel-button
+  confirm-button-text="回复"
+  asyncClose="{{true}}"
+  bind:cancel="onCancel"
+  bind:confirm="onConfirmReply"
+>
+  <van-field
+    type="textarea"
+    placeholder="请输入回复"
+    autosize
+    cursor-spacing="{{80}}"
+    focus="{{showTextarea}}"
+    show-confirm-bar="{{false}}"
+    border="{{false}}"
+    bind:input="onInput"
+  />
+</van-dialog>

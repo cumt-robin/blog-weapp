@@ -1,0 +1,38 @@
+<view class='card-comment'>
+  <image class='img-comment-avatar' src="/assets/img/avatar.svg"></image>
+  <view class='comment-info'>
+    <text class='comment-user'>{{comment.nick_name}}</text>
+    <text class='comment-time'>{{comment.time}}</text>
+    <text class='comment'>{{comment.content}}</text>
+    <button
+      class='btn-mini'
+      hover-class="btn-hover"
+      data-commentid="{{comment.id}}"
+      bindtap='replyRoot'>
+      <image class='icon-in-btn' src='/assets/img/reply.svg'></image>
+      <text>回复</text>
+    </button>
+
+    <view class='card-reply-list' wx:if="{{comment.replies.length > 0}}">
+      <view
+        class='card-reply'
+        wx:for="{{comment.replies}}"
+        wx:for-item="reply"
+        wx:key="id">
+        <view>
+          <image class='img-reply-avatar' src="/assets/img/reply_avatar.svg"></image>
+          <text class='reply-info'>{{reply.nick_name}}回复ta{{reply.reply_name || comment.nick_name}}</text>
+          <text class='reply-time'>{{reply.time}}</text>
+          <text class='reply'>{{reply.content}}</text>
+          <button
+            class='btn-mini'
+            hover-class="btn-hover"
+            bindtap='replyItem'>
+            <image class='icon-in-btn' src='/assets/img/reply.svg'></image>
+            <text>回复ta</text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

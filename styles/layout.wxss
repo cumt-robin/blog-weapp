@@ -20,3 +20,7 @@ page {
 .mt-navbar {
   margin-top: 54px;
 }
+
+.iphonex {
+  padding-bottom: 34px;
+}

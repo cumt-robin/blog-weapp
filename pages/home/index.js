@@ -1,8 +1,10 @@
-import Toast from 'vant-weapp/toast/toast'
+import Toast from '../../utils/toast.js'
 
 import { GetArticlePage } from '../../api/article.js'
 import { GetWeappBanners } from '../../api/banner.js'
 import { debounce } from '../../utils/index.js'
+
+const app = getApp();
 
 const focusDebounce = debounce(fc => {
   fc()
@@ -12,17 +14,25 @@ Component({
   options: {
     styleIsolation: 'apply-shared'
   },
+  properties: {
+    userInfo: {
+      type: Object
+    }
+  },
   data: {
     pageNo: 1,
     pageSize: 6,
     wd: '',
     articles: [],
     total: 0,
-    banners: []
+    banners: [],
+    isIphonex: app.globalData.isIphonex
   },
-  attached() {
-    this.getBannerList()
-    this.getArticlePage();
+  lifetimes: {
+    attached() {
+      this.getBannerList()
+      this.getArticlePage();
+    }
   },
   methods: {
     getBannerList() {
@@ -80,10 +90,7 @@ Component({
     },
     onClickDisabledTab(index, title) {
       console.log(index, title)
-      wx.showToast({
-        title: '功能即将开放...',
-        icon: 'none'
-      })
+      Toast.simple('功能即将开放...')
     }
   }
 })

@@ -1,8 +1,36 @@
-<view class='page-detail'>
+<scroll-view
+  class="page-scroll page-detail {{isIphonex ? 'iphonex' : ''}}"
+  scroll-y
+  enable-back-to-top
+  bindscrolltolower="onScrollToLower">
   <van-nav-bar
     title="{{title}}"
     fixed
     safe-area-inset-top="{{false}}"
   />
   <wemark md="{{md}}" link highlight type="wemark"></wemark>
-</view>
+
+  <view wx:if="{{total > 0}}">
+    <text class='column-title'>评论区</text>
+    <view class="card-comment-wrap">
+      <van-cell
+        wx:for="{{comments}}"
+        wx:for-item="comment"
+        wx:key="id">
+        <card-comment comment="{{comment}}"/>
+      </van-cell>
+    </view>
+
+    <bottom-tips
+      content="别滑了，已经见底了"
+      wx:if="{{comments.length === total}}"
+    />
+  </view>
+
+  <view wx:else>
+    <bottom-tips
+      content="暂无评论"
+      wx:if="{{!isLoadingComments}}"
+    />
+  </view>
+</scroll-view>

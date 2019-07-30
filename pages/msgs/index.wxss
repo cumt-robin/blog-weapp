@@ -1,1 +1,12 @@
-/* pages/msg-board/msg-board.wxss */
+.msgs-stats {
+  font-size: 12px;
+  color: #999;
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.user-count {
+  font-size: 16px;
+  color: #333;
+  font-weight: 700;
+}

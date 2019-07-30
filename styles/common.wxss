@@ -22,3 +22,11 @@
 .o-hidden {
   overflow: hidden;
 }
+
+.padd-0 {
+  padding: 0;
+}
+
+.v-align-top {
+  vertical-align: top;
+}

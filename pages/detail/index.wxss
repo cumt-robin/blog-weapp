@@ -1,4 +1,22 @@
 .page-detail {
-  padding: 54px 0 30px;
+  padding: 54px 0 34px;
   background-color: #fff;
+}
+.column-title {
+  position: relative;
+  font-size:16px;
+  margin-left:10px;
+  padding-bottom: 4px;
+}
+.column-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 4px;
+  width: 100%;
+  background-color: #f44;
+}
+.card-comment-wrap {
+  margin-top: 10px;
 }

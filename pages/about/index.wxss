@@ -1,0 +1,7 @@
+.content-wrap {
+  padding: 0 15px 10px;
+}
+.content {
+  font-size: 14px;
+  color: #666;
+}

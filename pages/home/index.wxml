@@ -1,9 +1,8 @@
 <scroll-view
-  class="page-scroll"
+  class="page-scroll {{isIphonex ? 'iphonex' : ''}}"
   scroll-y
   enable-back-to-top
-  bindscrolltolower="onScrollToLower"
-  >
+  bindscrolltolower="onScrollToLower">
   <van-search
     value="{{ wd }}"
     placeholder="输入关键词"
@@ -44,6 +43,11 @@
         url="{{'/pages/detail/index?id=' + item.id + '&title=' + item.article_name}}">
         <card-article item="{{item}}"></card-article>
       </van-cell>
+
+      <bottom-tips
+        content="别滑了，已经见底了"
+        wx:if="{{total > 0 && articles.length === total}}"
+      />
     </van-tab>
     <van-tab title="Web前端" disabled></van-tab>
     <van-tab title="Nodejs" disabled></van-tab>

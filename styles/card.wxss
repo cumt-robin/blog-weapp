@@ -22,6 +22,7 @@
   position: relative;
   background-color: #fff;
   margin-bottom: 10px;
+  border-radius: 4px;
 }
 .card-category .card-category__name {
   display: block;
@@ -47,7 +48,81 @@
 }
 
 /* 评论卡片 */
-.card-comment {
+.card-comment-wrap {
   position: relative;
+  padding: 0 6px;
+}
+
+.card-comment-wrap .van-cell {
+  padding: 10px 4px;
+  border-radius:10px;
+  margin-bottom: 20px;
+}
+
+.card-comment {
+  display: flex;
   text-align: left;
+}
+
+.img-comment-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.comment-info {
+  flex: 1;
+  margin-left:4px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.comment-user {
+  color:#5079b7;
+  font-size: 16px;
+}
+
+.comment-time {
+  display: block;
+  font-size: 12px;
+}
+
+.comment {
+  color: #333;
+  display:block;
+  padding-bottom:4px;
+}
+
+/* 回复卡片 */
+.card-reply {
+  text-align: left;
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+}
+
+.img-reply-avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.card-reply-list {
+  border-top: 1px solid #ccc;
+}
+
+.reply-info {
+  display:inline-block;
+  vertical-align:top;
+  margin-left:4px;
+  font-size:12px;
+}
+
+.reply-time {
+  display:inline-block;
+  vertical-align:top;
+  font-size:12px;
+  margin-left:4px;
+}
+
+.reply {
+  display: block;
+  color: #333;
 }
