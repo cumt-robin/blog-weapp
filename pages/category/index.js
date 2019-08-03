@@ -8,8 +8,7 @@ Component({
   },
   data: {
     isLoading: true,
-    categoryList: [],
-    isIphonex: app.globalData.isIphonex
+    categoryList: []
   },
   attached() {
     wx.pageScrollTo({

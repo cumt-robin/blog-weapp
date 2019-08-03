@@ -1,13 +1,19 @@
 const moment = require('../../lib/js/moment.min.js')
 
-import { GetCommentPeopleNum, GetCommentPage, GetCommentTotal } from "../../api/comment.js"
+import { GetCommentPeopleNum, GetCommentPage, GetCommentTotal, AddComment } from "../../api/comment.js"
+
+import { AddReply } from "../../api/reply.js"
 
 import Toast from '../../utils/toast.js'
 
-
 const app = getApp();
 
-let content = ''
+// type为1代表是留言，type为2代表是回复
+let type;
+
+let comment_id;
+
+let parent_id = null;
 
 Component({
   options: {
@@ -20,8 +26,10 @@ Component({
     pageSize: 5,
     comments: [],
     total: 0,
-    isIphonex: app.globalData.isIphonex,
-    showTextarea: false
+    showTextarea: false,
+    dialogTitle: '留言',
+    placeholder: '请输入留言',
+    content: ''
   },
   lifetimes: {
     attached() {
@@ -64,7 +72,7 @@ Component({
             replies: item.replies.map(reply => {
               return {
                 ...reply,
-                time: moment(item.create_time).fromNow(),
+                time: moment(reply.create_time).fromNow(),
               }
             })
           }
@@ -97,27 +105,100 @@ Component({
     onScrollToLower() {
       this.loadMore()
     },
-    onShowReply(e) {
-      let { type, comment_id } = e.detail
+    onShowComment() {
+      if (!app.globalData.userInfo) {
+        return this.gotoAuthorize()
+      }
+      type = 0;
       this.setData({
-        showTextarea: true
+        showTextarea: true,
+        dialogTitle: '留言',
+        placeholder: '请输入留言'
       })
-      console.log(e)
+    },
+    onShowReply(e) {
+      if (!app.globalData.userInfo) {
+        return this.gotoAuthorize()
+      }
+      type = e.detail.type;
+      comment_id = e.detail.comment_id
+      parent_id = e.detail.parent_id || null
+      this.setData({
+        showTextarea: true,
+        dialogTitle: '回复',
+        placeholder: '请输入回复'
+      })
+    },
+    gotoAuthorize() {
+      wx.navigateTo({
+        url: '/pages/auth/index'
+      })
     },
     onCancel() {
       this.setData({
-        showTextarea: false
+        showTextarea: false,
+        content: ''
       })
     },
     onInput(e) {
-      content = e.detail
+      this.setData({
+        content: e.detail
+      })
     },
     onConfirmReply() {
-      if (!content) {
+      if (!this.data.content) {
         Toast.simple('您还未输入内容')
         this.selectComponent('#van-dialog').stopLoading()
       } else {
-        console.log(content)
+        let params;
+        const userInfo = app.globalData.userInfo
+        if (type === 0) {
+          // 发起留言
+          params = {
+            approved: 0,
+            nick_name: userInfo.nickName,
+            avatar: userInfo.avatarUrl,
+            device: app.globalData.systemInfo.model,
+            content: this.data.content
+          }
+          return AddComment(params).then(res => {
+            this.setData({
+              showTextarea: false,
+              pageNo: 1,
+              content: ''
+            })
+            this.getCommentList();
+            Toast.simple('留言成功，请耐心等待审核')
+          })
+        } else if (type === 1) {
+          params = {
+            approved: 0,
+            nick_name: userInfo.nickName,
+            avatar: userInfo.avatarUrl,
+            device: app.globalData.systemInfo.model,
+            content: this.data.content,
+            comment_id
+          }
+        } else {
+          params = {
+            approved: 0,
+            nick_name: userInfo.nickName,
+            avatar: userInfo.avatarUrl,
+            device: app.globalData.systemInfo.model,
+            parent_id,
+            content: this.data.content,
+            comment_id
+          }
+        }
+        AddReply(params).then(res => {
+          this.setData({
+            showTextarea: false,
+            pageNo: 1,
+            content: ''
+          })
+          this.getCommentList();
+          Toast.simple('回复成功，请耐心等待审核')
+        })
       }
     }
   }

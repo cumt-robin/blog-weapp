@@ -1,14 +1,13 @@
-<view class="{{isIphonex ? 'iphonex' : ''}}">
+<scroll-view
+  class="view-scroll"
+  scroll-y
+  enable-back-to-top>
   <van-nav-bar
     title="个人中心"
     fixed
     safe-area-inset-top="{{false}}"
   />
-  <scroll-view
-    class="mt-navbar"
-    scroll-y
-    enable-back-to-top
-    bindscrolltolower="onScrollToLower">
+  <view class="mt-navbar">
     <van-cell-group>
       <van-cell>
         <view class='avatar-wrap'>
@@ -41,5 +40,5 @@
         </view>
       </van-cell>
     </van-cell-group>
-  </scroll-view>
-</view>
+  </view>
+</scroll-view>

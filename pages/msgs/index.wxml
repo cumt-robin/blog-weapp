@@ -1,5 +1,5 @@
 <scroll-view
-  class="page-scroll {{isIphonex ? 'iphonex' : ''}}"
+  class="view-scroll"
   scroll-y
   enable-back-to-top
   bindscrolltolower="onScrollToLower">
@@ -12,6 +12,7 @@
   <view class='mt-navbar'>
     <text class='msgs-stats'>已有<text class='user-count'>{{userCount}}</text>人在这留下了足迹</text>
     <text class='msgs-stats'>留言总数：<text class='user-count'>{{commentTotal}}</text>条</text>
+    <image class="icon-comment" src="/assets/img/comment_root.svg" bind:tap="onShowComment"/>
     <view class="card-comment-wrap" bindshowReply="onShowReply">
       <van-cell
         wx:for="{{comments}}"
@@ -31,18 +32,18 @@
 <van-dialog
   id="van-dialog"
   use-slot
-  title="输入回复内容"
+  title="{{dialogTitle}}"
   show="{{showTextarea}}"
   show-cancel-button
-  confirm-button-text="回复"
   asyncClose="{{true}}"
   bind:cancel="onCancel"
   bind:confirm="onConfirmReply"
 >
   <van-field
     type="textarea"
-    placeholder="请输入回复"
+    placeholder="{{placeholder}}"
     autosize
+    value="{{content}}"
     cursor-spacing="{{80}}"
     focus="{{showTextarea}}"
     show-confirm-bar="{{false}}"

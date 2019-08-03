@@ -6,6 +6,8 @@
     "van-tabs": "vant-weapp/tabs/index",
     "van-cell": "vant-weapp/cell/index",
     "bottom-tips": "/components/bottom-tips/index",
-    "card-comment": "/components/card-comment/index"
+    "card-comment": "/components/card-comment/index",
+    "van-dialog": "vant-weapp/dialog/index",
+    "van-field": "vant-weapp/field/index"
   }
 }

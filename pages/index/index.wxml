@@ -1,4 +1,4 @@
-<view class="page-top">
+<view class="page-navbar {{isIphonex ? 'page-navbar--iphonex' : ''}}">
   <home-panel id="home" wx:if="{{activeTab == 'home'}}">首页</home-panel>
   <category-panel wx:elif="{{activeTab == 'category'}}">分类</category-panel>
   <msgs-panel wx:elif="{{activeTab == 'msgs'}}">留言</msgs-panel>

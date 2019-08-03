@@ -1,27 +1,29 @@
-<view class="{{isIphonex ? 'iphonex' : ''}}">
-  <van-nav-bar
-    title="{{'分类：' + keyword}}"
-    fixed
-    safe-area-inset-top="{{false}}"
-  />
-
+<view class="page-common {{isIphonex ? 'page-common--iphonex' : ''}}">
   <scroll-view
-    class='mt-navbar'
+    class="view-scroll"
     scroll-y
     enable-back-to-top
     bindscrolltolower="onScrollToLower">
-    <van-cell
-      wx:for="{{articles}}"
-      wx:key="id"
-      border="{{false}}"
-      url="{{'/pages/detail/index?id=' + item.id + '&title=' + item.article_name}}">
-      <card-article item="{{item}}"></card-article>
-    </van-cell>
-
-    <bottom-tips
-      wx:if="{{!isLoading}}"
-      content="全部加载完成"
+    <van-nav-bar
+      title="{{'分类：' + keyword}}"
+      fixed
+      safe-area-inset-top="{{false}}"
     />
+
+    <view class='mt-navbar'>
+      <van-cell
+        wx:for="{{articles}}"
+        wx:key="id"
+        border="{{false}}"
+        url="{{'/pages/detail/index?id=' + item.id + '&title=' + item.article_name}}">
+        <card-article item="{{item}}"></card-article>
+      </van-cell>
+
+      <bottom-tips
+        wx:if="{{!isLoading}}"
+        content="全部加载完成"
+      />
+    </view>
   </scroll-view>
 </view>
 

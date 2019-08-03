@@ -1,5 +1,5 @@
 <scroll-view
-  class="page-scroll {{isIphonex ? 'iphonex' : ''}}"
+  class="view-scroll"
   scroll-y
   enable-back-to-top
   bindscrolltolower="onScrollToLower">

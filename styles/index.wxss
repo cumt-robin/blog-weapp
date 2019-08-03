@@ -1,4 +1,5 @@
 @import "./common.wxss";
+@import "./animation.wxss";
 @import "./layout.wxss";
 @import "./btn.wxss";
 @import "./card.wxss";

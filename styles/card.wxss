@@ -67,6 +67,7 @@
 .img-comment-avatar {
   width: 40px;
   height: 40px;
+  border-radius: 100%;
 }
 
 .comment-info {
@@ -102,6 +103,7 @@
 .img-reply-avatar {
   width: 24px;
   height: 24px;
+  border-radius: 100%;
 }
 
 .card-reply-list {

@@ -7,7 +7,6 @@ Component({
     styleIsolation: 'apply-shared'
   },
   data: {
-    isIphonex: app.globalData.isIphonex,
     userInfo: null
   },
   lifetimes: {
@@ -30,7 +29,6 @@ Component({
           Toast.simple('程序猿小哥哥加班玩命中')
           break
       }
-    },
-    onScrollToLower() {}
+    }
   }
 })

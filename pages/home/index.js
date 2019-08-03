@@ -25,8 +25,7 @@ Component({
     wd: '',
     articles: [],
     total: 0,
-    banners: [],
-    isIphonex: app.globalData.isIphonex
+    banners: []
   },
   lifetimes: {
     attached() {

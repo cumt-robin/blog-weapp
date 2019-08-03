@@ -1,10 +1,13 @@
-<view class="{{isIphonex ? 'iphonex' : ''}}">
+<scroll-view
+  class="view-scroll"
+  scroll-y
+  enable-back-to-top>
   <van-nav-bar
     title="文章分类"
     fixed
     safe-area-inset-top="{{false}}"
   />
-  <view class='category-list-wrap'>
+  <view class='mt-navbar category-list'>
     <van-row gutter="10">
       <van-col
         wx:for="{{categoryList}}"
@@ -28,4 +31,4 @@
     wx:if="{{!isLoading}}"
     content="全部加载完成"
   />
-</view>
+</scroll-view>

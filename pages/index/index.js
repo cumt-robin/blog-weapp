@@ -11,7 +11,8 @@ Page({
       { name: 'category', icon: 'label-o', badge: '', label: '分类' },
       { name: 'msgs', icon: 'comment-o', badge: '', label: '留言' },
       { name: 'my', icon: 'user-o', label: '我的', disabled: true }
-    ]
+    ],
+    isIphonex: app.globalData.isIphonex
   },
   onLoad(query) {
     if (query.active) {
@@ -52,7 +53,7 @@ Page({
   onTabChange(event) {
     if (event.detail === 'my' && !app.globalData.userInfo) {
       wx.navigateTo({
-        url: '/pages/auth/index?to=my'
+        url: '/pages/auth/index'
       })
     } else {
       this.setData({

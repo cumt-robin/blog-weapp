@@ -15,10 +15,9 @@ Page({
       data: e.target.dataset.content,
       success(res) {
         wx.showToast({
-          title: '复制成功',
+          title: '复制成功'
         })
       }
     })
-  },
-  onScrollToLower() {}
+  }
 })

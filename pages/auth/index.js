@@ -14,16 +14,9 @@ Page({
   onGetUserinfo(e) {
     if (e.detail.userInfo) {
       app.globalData.userInfo = e.detail.userInfo;
-      let toURL = toPage
-      if (toPage === 'my') {
-        toURL = '/pages/index/index?active=my'
-      }
-      wx.redirectTo({
-        url: toURL,
-      })
     } else {
       Toast.simple('取消了授权')
-      wx.navigateBack()
     }
+    wx.navigateBack()
   }
 })

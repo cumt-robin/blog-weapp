@@ -1,19 +1,36 @@
 import { GetArticleDetail } from "../../api/article.js"
-import { GetCommentPage } from "../../api/comment.js"
+import { GetCommentPage, AddComment } from "../../api/comment.js"
+import { AddReply } from "../../api/reply.js"
 
 const moment = require('../../lib/js/moment.min.js')
+
+import Toast from '../../utils/toast.js'
+
+const app = getApp();
+
+// type为1代表是发起一级回复（即回复评论），type为2代表是发起二级回复（即对回复进行回复）
+let type;
+
+let comment_id;
+
+let parent_id = null;
 
 let id;
 
 Page({
   data: {
+    isIphonex: app.globalData.isIphonex,
     md: '',
     title: '',
     comments: [],
     total: 0,
     pageNo: 1,
     pageSize: 5,
-    isLoadingComments: true
+    isLoadingComments: true,
+    showTextarea: false,
+    dialogTitle: '评论',
+    placeholder: '请输入评论',
+    content: ''
   },
   onLoad(query) {
     id = query.id
@@ -45,7 +62,7 @@ Page({
           replies: item.replies.map(reply => {
             return {
               ...reply,
-              time: moment(item.create_time).fromNow(),
+              time: moment(reply.create_time).fromNow(),
             }
           })
         }
@@ -78,6 +95,105 @@ Page({
   },
   onScrollToLower() {
     this.loadMore()
+  },
+  onShowComment() {
+    if (!app.globalData.userInfo) {
+      return this.gotoAuthorize()
+    }
+    type = 0;
+    this.setData({
+      showTextarea: true,
+      dialogTitle: '评论',
+      placeholder: '请输入评论'
+    })
+  },
+  onShowReply(e) {
+    if (!app.globalData.userInfo) {
+      return this.gotoAuthorize()
+    }
+    type = e.detail.type;
+    comment_id = e.detail.comment_id
+    parent_id = e.detail.parent_id || null
+    this.setData({
+      showTextarea: true,
+      dialogTitle: '回复',
+      placeholder: '请输入回复'
+    })
+  },
+  gotoAuthorize() {
+    wx.navigateTo({
+      url: '/pages/auth/index'
+    })
+  },
+  onCancel() {
+    this.setData({
+      showTextarea: false,
+      content: ''
+    })
+  },
+  onInput(e) {
+    this.setData({
+      content: e.detail
+    })
+  },
+  onConfirmReply() {
+    if (!this.data.content) {
+      Toast.simple('您还未输入内容')
+      this.selectComponent('#van-dialog').stopLoading()
+    } else {
+      let params;
+      const userInfo = app.globalData.userInfo
+      if (type === 0) {
+        // 发起评论
+        params = {
+          approved: 0,
+          nick_name: userInfo.nickName,
+          avatar: userInfo.avatarUrl,
+          device: app.globalData.systemInfo.model,
+          article_id: id,
+          content: this.data.content
+        }
+        return AddComment(params).then(res => {
+          this.setData({
+            showTextarea: false,
+            pageNo: 1,
+            content: ''
+          })
+          this.getCommentList();
+          Toast.simple('评论成功，请耐心等待审核')
+        })
+      } else if (type === 1) {
+        // 发起一级回复
+        params = {
+          approved: 0,
+          nick_name: userInfo.nickName,
+          avatar: userInfo.avatarUrl,
+          device: app.globalData.systemInfo.model,
+          content: this.data.content,
+          comment_id
+        }
+      } else {
+        // 发起二级回复
+        params = {
+          approved: 0,
+          nick_name: userInfo.nickName,
+          avatar: userInfo.avatarUrl,
+          device: app.globalData.systemInfo.model,
+          parent_id,
+          content: this.data.content,
+          comment_id
+        }
+      }
+      AddReply(params).then(res => {
+        this.setData({
+          showTextarea: false,
+          pageNo: 1,
+          content: ''
+        })
+        this.getCommentList();
+        Toast.simple('回复成功，请耐心等待审核')
+      })
+    }
   },
   onBack() {
     wx.navigateBack()

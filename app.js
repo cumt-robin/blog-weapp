@@ -17,6 +17,7 @@ App({
   },
   globalData: {
     userInfo: null,
+    systemInfo: null,
     isIphonex: false
   },
   checkUserSetting() {
@@ -48,8 +49,9 @@ App({
   checkDevice() {
     wx.getSystemInfo({
       success: res => {
-        // 根据 model 进行判断
         console.log('system info:', res)
+        this.globalData.systemInfo = res
+        // 根据 model 进行判断
         if (res.model.indexOf('iPhone X') !== -1) {
           this.globalData.isIphonex = true
         }

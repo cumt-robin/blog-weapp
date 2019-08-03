@@ -1,7 +1,24 @@
-.page-detail {
-  padding: 54px 0 34px;
+.bg-white {
   background-color: #fff;
 }
+
+.title-wrap {
+  position: relative;
+}
+
+.title-wrap >image {
+  width:24px;
+  height:24px;
+  vertical-align:middle;
+  margin-left:10px;
+  will-change: transform;
+  animation: pulse .4s ease-in-out infinite alternate;
+}
+
+.tips {
+  font-size: 14px;
+}
+
 .column-title {
   position: relative;
   font-size:16px;
@@ -17,6 +34,7 @@
   width: 100%;
   background-color: #f44;
 }
+
 .card-comment-wrap {
   margin-top: 10px;
 }

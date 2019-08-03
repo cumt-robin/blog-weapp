@@ -3,24 +3,39 @@ page {
   background:#f2f2f2;
 }
 
-.page-top {
-  padding-bottom: 50px;
-}
-
-.page-scroll {
+.page-navbar {
   position: relative;
-  height: 100vh;
+  height: calc(100% - 50px);
 }
 
-.category-list-wrap {
-  margin-top: 44px;
-  padding: 10px;
+.page-navbar.page-navbar--iphonex {
+  box-sizing: border-box;
+  padding-bottom: 34px;
+}
+
+.page-common {
+  position: relative;
+  height: 100%;
+}
+.page-common.page-common--iphonex {
+  box-sizing: border-box;
+  padding-bottom: 34px;
+}
+
+.view-scroll {
+  position: relative;
+  height: 100%;
 }
 
 .mt-navbar {
-  margin-top: 54px;
+  padding-top: 54px;
 }
 
-.iphonex {
+.iphonex-gap {
   padding-bottom: 34px;
+}
+
+.category-list {
+  padding-left: 10px;
+  padding-right: 10px;
 }
