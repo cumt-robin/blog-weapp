@@ -1,4 +1,4 @@
-const moment = require('../lib/js/moment.min.js')
+const moment = require('../lib/moment.min.js')
 
 moment.locale('zh', {
   relativeTime: {

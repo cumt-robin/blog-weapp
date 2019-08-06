@@ -1,23 +1,13 @@
 .msgs-stats {
-  font-size: 12px;
+  font-size: 24rpx;
   color: #999;
   display: block;
   text-align: center;
-  padding-bottom: 10px;
+  padding-bottom: 20rpx;
 }
 
 .user-count {
-  font-size: 16px;
+  font-size: 32rpx;
   color: #333;
   font-weight: 700;
-}
-
-.icon-comment {
-  width:24px;
-  height:24px;
-  margin-left:10px;
-  will-change: transform;
-  margin: 0 auto 10px;
-  display: block;
-  animation: pulse .4s ease-in-out infinite alternate;
 }

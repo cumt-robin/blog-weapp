@@ -3,6 +3,8 @@
     class="view-scroll"
     scroll-y
     enable-back-to-top
+    scroll-top="{{scrollTopVal}}"
+    bindscroll="onScroll"
     bindscrolltolower="onScrollToLower">
     <van-nav-bar
       title="{{title}}"
@@ -10,12 +12,11 @@
       safe-area-inset-top="{{false}}"
     />
     <view class="mt-navbar">
-      <wemark md="{{md}}" link highlight type="wemark"></wemark>
+      <wemark md="{{md}}" link highlight type="wemark" bind:imgload="onImgLoad"></wemark>
 
       <view wx:if="{{total > 0}}">
         <view class="title-wrap">
           <text class='column-title'>评论区</text>
-          <image src="/assets/img/comment_root.svg" bind:tap="onShowComment"/>
         </view>
         
         <view class="card-comment-wrap" bindshowReply="onShowReply">
@@ -43,13 +44,22 @@
   </scroll-view>
 </view>
 
+<view class="aside-bar">
+  <view class="item-wrap" hidden="{{!isShowScrollIcon}}" bind:tap="scrollJump">
+    <image class="icon-aside icon-scroll {{direction === 'down' ? 'arrow-down' : 'arrow-up'}}" src="/assets/img/arrow-down.svg" />
+  </view>
+  <view class="item-wrap" bind:tap="onShowComment">
+    <image class="icon-aside anim-pulse" src="/assets/img/comment_root.svg"/>
+  </view>
+</view>
+
 <van-dialog
   id="van-dialog"
   use-slot
   title="{{dialogTitle}}"
   show="{{showTextarea}}"
   show-cancel-button
-  asyncClose="{{true}}"
+  asyncClose
   bind:cancel="onCancel"
   bind:confirm="onConfirmReply"
 >

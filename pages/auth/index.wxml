@@ -5,7 +5,7 @@
     content="Tusi博客将获取您的公开信息（昵称，头像等）"
     line="{{false}}"
     top="0"
-    font-size="14px"
+    font-size="28rpx"
   />
   <button
     class='btn-auth'

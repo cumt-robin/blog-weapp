@@ -6,35 +6,26 @@
   position: relative;
 }
 
-.title-wrap >image {
-  width:24px;
-  height:24px;
-  vertical-align:middle;
-  margin-left:10px;
-  will-change: transform;
-  animation: pulse .4s ease-in-out infinite alternate;
-}
-
 .tips {
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .column-title {
   position: relative;
-  font-size:16px;
-  margin-left:10px;
-  padding-bottom: 4px;
+  font-size:32rpx;
+  margin-left:20rpx;
+  padding-bottom: 8rpx;
 }
 .column-title::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -6px;
-  height: 4px;
+  bottom: -12rpx;
+  height: 8rpx;
   width: 100%;
   background-color: #f44;
 }
 
 .card-comment-wrap {
-  margin-top: 10px;
+  margin-top: 20rpx;
 }

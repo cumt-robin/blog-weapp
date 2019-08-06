@@ -20,7 +20,7 @@
         wx:for-item="reply"
         wx:key="id">
         <view>
-          <image class='img-reply-avatar' src="{{reply.avatar || '/assets/img/reply_avatar.svg'}}"></image>
+          <image class='img-reply-avatar' src="{{reply.avatar || '/assets/img/reply-avatar.svg'}}"></image>
           <text class='reply-info'>{{reply.nick_name}}回复{{reply.reply_name || comment.nick_name}}</text>
           <text class='reply-time'>{{reply.time}}</text>
           <text class='reply'>{{reply.content}}</text>

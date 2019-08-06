@@ -1,10 +1,13 @@
 import "./utils/finally-polyfill.js"
+import Toast from "./utils/toast.js"
 require('./utils/moment-init.js')
+
 
 // app.js
 App({
   onLaunch: function () {
     console.log('onLaunch', this)
+    this.checkUpdate()
     // 登录
     wx.login({
       success: res => {
@@ -19,6 +22,30 @@ App({
     userInfo: null,
     systemInfo: null,
     isIphonex: false
+  },
+  checkUpdate() {
+    const updateManager = wx.getUpdateManager()
+    updateManager.onCheckForUpdate(res => {
+      if (res.hasUpdate) {
+        // 有新版本
+        Toast.simple('发现新版本，请稍候')
+        updateManager.onUpdateReady(() => {
+          wx.showModal({
+            title: '版本更新',
+            content: '新版本已经准备好，是否重新加载小程序？',
+            success(res) {
+              if (res.confirm) {
+                updateManager.applyUpdate()
+              }
+            }
+          })
+        })
+
+        updateManager.onUpdateFailed(() => {
+          Toast.simple('网络出了点问题，新版本下载失败')
+        })
+      }
+    })
   },
   checkUserSetting() {
     // 获取用户信息

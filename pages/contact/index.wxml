@@ -19,6 +19,6 @@
       </van-cell>
     </van-cell-group>
 
-    <bottom-tips content="轻触文字即可复制" top="15px"/>
+    <bottom-tips content="轻触文字即可复制" top="15rpx"/>
   </view>
 </view>

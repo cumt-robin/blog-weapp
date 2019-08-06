@@ -1,14 +1,14 @@
 .btn-mini {
-  padding:0 4px;
+  padding:0 8rpx;
   display:inline-block;
-  line-height:24px;
+  line-height:48rpx;
 }
 
 .btn-mini >text {
-  font-size: 12px;
+  font-size: 24rpx;
   vertical-align:top;
   display:inline-block;
-  margin-left: 2px;
+  margin-left: 4rpx;
   color: #999;
 }
 
@@ -22,18 +22,18 @@
 }
 
 .icon-in-btn {
-  width: 16px;
-  height: 16px;
+  width: 32rpx;
+  height: 32rpx;
 }
 
 .textarea-wrap {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20rpx;
 }
 .textarea {
   display: inline-block;
-  border:1px solid #ccc;
-  padding:10px;
+  border:2rpx solid #ccc;
+  padding:20rpx;
   text-align:left;
   box-sizing:border-box;
 }

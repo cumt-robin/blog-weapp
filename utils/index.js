@@ -188,15 +188,6 @@ function dataFilter(obj, isStrict = false, checkArr = false) {
   }
 }
 
-// 测试数据
-var a = {
-  b: [
-    null, 1, { c: 1, d: undefined, f: [1, null, undefined, ''] }, ''
-  ],
-  name: '',
-  sex: null
-}
-
 // 合并两个数据，用于支撑merge方法
 function mergeTwo(obj1, obj2) {
   let dataType1 = getType(obj1);
@@ -392,4 +383,22 @@ export function debounce(func, wait, options) {
   debounced.cancel = cancel;
   debounced.flush = flush;
   return debounced;
+}
+
+export function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  return debounce(func, wait, {
+    'leading': leading,
+    'maxWait': wait,
+    'trailing': trailing
+  });
 }

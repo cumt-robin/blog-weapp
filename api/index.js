@@ -1,7 +1,7 @@
 import { merge } from '../utils/index.js'
 import Toast from "../utils/toast.js"
 
-const BASE_URL = 'https://blog.wbjiang.cn'
+const BASE_URL = 'https://blog.wbjiang.cn/api'
 
 const DEFAULT_OPTIONS = {
   header: {

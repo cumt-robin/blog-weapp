@@ -2,54 +2,65 @@
   class="view-scroll"
   scroll-y
   enable-back-to-top
+  scroll-with-animation
+  scroll-top="{{scrollTopVal}}"
+  bindscroll="onScroll"
   bindscrolltolower="onScrollToLower">
-  <van-search
-    value="{{ wd }}"
-    placeholder="输入关键词"
-    bind:focus="onSearchFocus"
-  >
-  </van-search>
+  <view class="content-wrap">
+    <van-search
+      value="{{ wd }}"
+      placeholder="输入关键词"
+      bind:focus="onSearchFocus"
+    >
+    </van-search>
 
-  <van-notice-bar
-    speed="30"
-    backgroundColor="#fff"
-    left-icon="volume-o"
-    text="好消息：打开支付宝首页搜索“515348365” 立即领红包！"
-  />
+    <van-notice-bar
+      speed="30"
+      backgroundColor="#fff"
+      left-icon="volume-o"
+      text="好消息：打开支付宝首页搜索“515348365” 立即领红包！"
+    />
 
-  <swiper
-    indicator-dots="{{true}}"
-    autoplay="{{true}}"
-    circular="{{circular}}"
-    interval="{{3000}}">
-    <swiper-item wx:for="{{banners}}" wx:key="index">
-      <image
-        class="img-banner"
-        src="{{item.poster}}"
-        mode="{{item.prefer_position || 'center'}}">
-      </image>
-    </swiper-item>
-  </swiper>
+    <swiper
+      indicator-dots
+      autoplay
+      circular="{{circular}}"
+      interval="{{3000}}">
+      <swiper-item wx:for="{{banners}}" wx:key="index">
+        <image
+          class="img-banner"
+          src="{{item.poster}}"
+          mode="{{item.prefer_position || 'center'}}">
+        </image>
+      </swiper-item>
+    </swiper>
 
-  <van-tabs
-    sticky
-    bind:change="onTabChange"
-    bind:disabled="onClickDisabledTab">
-    <van-tab title="最新文章">
-      <van-cell
-        wx:for="{{articles}}"
-        wx:key="id"
-        border="{{false}}"
-        url="{{'/pages/detail/index?id=' + item.id + '&title=' + item.article_name}}">
-        <card-article item="{{item}}"></card-article>
-      </van-cell>
+    <van-tabs
+      sticky
+      bind:change="onTabChange"
+      bind:disabled="onClickDisabledTab">
+      <van-tab title="最新文章">
+        <van-cell
+          wx:for="{{articles}}"
+          wx:key="id"
+          border="{{false}}"
+          url="{{'/pages/detail/index?id=' + item.id + '&title=' + item.article_name}}">
+          <card-article item="{{item}}"></card-article>
+        </van-cell>
 
-      <bottom-tips
-        content="别滑了，已经见底了"
-        wx:if="{{total > 0 && articles.length === total}}"
-      />
-    </van-tab>
-    <van-tab title="Web前端" disabled></van-tab>
-    <van-tab title="Nodejs" disabled></van-tab>
-  </van-tabs>
+        <bottom-tips
+          content="别滑了，已经见底了"
+          wx:if="{{total > 0 && articles.length === total}}"
+        />
+      </van-tab>
+      <van-tab title="Web前端" disabled></van-tab>
+      <van-tab title="Nodejs" disabled></van-tab>
+    </van-tabs>
+  </view>
 </scroll-view>
+
+<view class="aside-bar" hidden="{{!isShowScrollIcon}}">
+  <view class="item-wrap" bind:tap="scrollJump">
+    <image class="icon-aside icon-scroll {{direction === 'down' ? 'arrow-down' : 'arrow-up'}}" src="/assets/img/arrow-down.svg" />
+  </view>
+</view>

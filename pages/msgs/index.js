@@ -1,4 +1,4 @@
-const moment = require('../../lib/js/moment.min.js')
+const moment = require('../../lib/moment.min.js')
 
 import { GetCommentPeopleNum, GetCommentPage, GetCommentTotal, AddComment } from "../../api/comment.js"
 
@@ -6,7 +6,27 @@ import { AddReply } from "../../api/reply.js"
 
 import Toast from '../../utils/toast.js'
 
+import { throttle } from '../../utils/index.js'
+
 const app = getApp();
+
+// 监听滚动节流
+const scrollThrottle = throttle(func => func(), 100, { trailing: true })
+
+// 容器高度
+let containerHeight = 0;
+
+// 内容高度
+let contentHeight = 0;
+
+// 最近一次的scrollTop值
+let lastScrollVal = 0;
+
+// 自动隐藏定时器
+let hideTimer = null;
+
+// 最大的scrollTop值
+let scrollMax = 0;
 
 // type为1代表是留言，type为2代表是回复
 let type;
@@ -14,6 +34,7 @@ let type;
 let comment_id;
 
 let parent_id = null;
+
 
 Component({
   options: {
@@ -29,7 +50,10 @@ Component({
     showTextarea: false,
     dialogTitle: '留言',
     placeholder: '请输入留言',
-    content: ''
+    content: '',
+    isShowScrollIcon: false,
+    direction: 'down',
+    scrollTopVal: 0
   },
   lifetimes: {
     attached() {
@@ -40,9 +64,79 @@ Component({
       this.getUserCount()
       this.getCommentTotal()
       this.getCommentList()
+    },
+    ready() {
+      this.getContainerHeight();
     }
   },
   methods: {
+    getContainerHeight() {
+      const selectQuery = this.createSelectorQuery()
+      selectQuery.select('.view-scroll').boundingClientRect()
+      selectQuery.exec(function(res){
+        containerHeight = res[0].height;
+      })
+    },
+    onScroll(e) {
+      scrollThrottle(() => {
+        let direction = e.detail.scrollTop > lastScrollVal ? 'down' : 'up'
+        lastScrollVal = e.detail.scrollTop;
+        let currScrollTop = e.detail.scrollTop
+        // 预留50px，进入临界区时，自动调整方向
+        if (currScrollTop <= 50) {
+          direction = 'down'
+        } else if (currScrollTop >= scrollMax - 50 && this.data.comments.length === this.data.total) {
+          // 底部判断要特殊一点，因为可能数据未加载完
+          direction = 'up'
+        }
+        this.setData({
+          isShowScrollIcon: true,
+          direction
+        })
+        this.setHideTimer();
+      })
+    },
+    setHideTimer() {
+      this.clearHideTimer();
+      hideTimer = setTimeout(() => {
+        this.setData({
+          isShowScrollIcon: false
+        })
+      }, 5000)
+    },
+    clearHideTimer() {
+      if (hideTimer) {
+        clearTimeout(hideTimer)
+      }
+    },
+    scrollJump() {
+      if (this.data.direction === 'down') {
+        // 如果当前滑动方向是向下，设置scrollTop的值为scrollMax
+        let data = { scrollTopVal: scrollMax }
+        if (this.data.comments.length === this.data.total) {
+          // 如果数据已经加载完毕，最后调整滑动方向为up
+          data.direction = 'up'
+        }
+        this.setData(data)
+      } else {
+        // 如果当前滑动方向是向上
+        this.setData({
+          scrollTopVal: 0,
+          direction: 'down'
+        })
+      }
+    },
+    /**
+     * @description 更新内容区域真实高度
+     */
+    updateContentHeight() {
+      const selectQuery = this.createSelectorQuery()
+      selectQuery.select('.mt-navbar').boundingClientRect()
+      selectQuery.exec(function(res){
+        contentHeight = res[0].height;
+        scrollMax = contentHeight - containerHeight;
+      })
+    },
     getUserCount() {
       GetCommentPeopleNum().then(res => {
         this.setData({
@@ -90,6 +184,7 @@ Component({
           }
         }
         this.setData(data);
+        this.updateContentHeight();
       }).finally(() => {
         wx.hideLoading()
       })

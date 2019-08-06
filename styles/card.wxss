@@ -1,16 +1,17 @@
 .card-title {
-  font-size: 18px;
+  font-size: 36rpx;
   color: #333;
   width: 100%;
   display: block;
-  padding-bottom: 10px;
+  padding-bottom: 20rpx;
+  font-weight: 700;
 }
 
 /* 首页文章卡片 */
 .card-article {
   text-align: center;
-  border-bottom:1px solid #d8d8d8;
-  padding-bottom:20px;
+  border-bottom:2rpx solid #d8d8d8;
+  padding-bottom: 40rpx;
 }
 .card-article .img-poster {
   width: 100%;
@@ -21,19 +22,19 @@
 .card-category {
   position: relative;
   background-color: #fff;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
 }
 .card-category .card-category__name {
   display: block;
   text-align: center;
-  font-size: 14px;
-  padding-bottom:4px;
+  font-size: 28rpx;
+  padding-bottom: 8rpx;
 }
 
 .img-category {
   width: 100%;
-  height: 120px;
+  height: 240rpx;
 }
 
 .badge-category {
@@ -50,13 +51,13 @@
 /* 评论卡片 */
 .card-comment-wrap {
   position: relative;
-  padding: 0 6px;
+  padding: 0 12rpx;
 }
 
 .card-comment-wrap .van-cell {
-  padding: 10px 4px;
-  border-radius:10px;
-  margin-bottom: 20px;
+  padding: 20rpx 8rpx;
+  border-radius: 20rpx;
+  margin-bottom: 40rpx;
 }
 
 .card-comment {
@@ -65,63 +66,63 @@
 }
 
 .img-comment-avatar {
-  width: 40px;
-  height: 40px;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 100%;
 }
 
 .comment-info {
   flex: 1;
-  margin-left:4px;
+  margin-left: 8rpx;
   display: inline-block;
   vertical-align: top;
 }
 
 .comment-user {
   color:#5079b7;
-  font-size: 16px;
+  font-size: 32rpx;
 }
 
 .comment-time {
   display: block;
-  font-size: 12px;
+  font-size: 24rpx;
 }
 
 .comment {
   color: #333;
   display:block;
-  padding-bottom:4px;
+  padding-bottom: 8rpx;
 }
 
 /* 回复卡片 */
 .card-reply {
   text-align: left;
-  padding:10px 0;
-  border-bottom:1px solid #eee;
+  padding:20rpx 0;
+  border-bottom:2rpx solid #eee;
 }
 
 .img-reply-avatar {
-  width: 24px;
-  height: 24px;
+  width: 48rpx;
+  height: 48rpx;
   border-radius: 100%;
 }
 
 .card-reply-list {
-  border-top: 1px solid #ccc;
+  border-top: 2rpx solid #ccc;
 }
 
 .reply-info {
   display:inline-block;
   vertical-align:top;
-  margin-left:4px;
-  font-size:12px;
+  margin-left: 8rpx;
+  font-size:24rpx;
 }
 
 .reply-time {
   display:inline-block;
   vertical-align:top;
-  font-size:12px;
-  margin-left:4px;
+  font-size:24rpx;
+  margin-left: 8rpx;
 }
 
 .reply {

@@ -3,24 +3,24 @@
 }
 .tips {
   position: relative;
-  font-size: 12px;
+  font-size: 24rpx;
   color: #999;
 }
 .tips--line::before {
   content: "";
   position: absolute;
-  left: -70px;
-  top: 8px;
-  width: 60px;
-  height: 1px;
+  left: -140rpx;
+  top: 16rpx;
+  width: 120rpx;
+  height: 2rpx;
   background-color: #ccc;
 }
 .tips--line::after {
   content: "";
   position: absolute;
-  right: -70px;
-  top: 8px;
-  width: 60px;
-  height: 1px;
+  right: -140rpx;
+  top: 16rpx;
+  width: 120rpx;
+  height: 2rpx;
   background-color: #ccc;
 }

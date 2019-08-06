@@ -1,12 +1,30 @@
 import { GetArticleDetail } from "../../api/article.js"
 import { GetCommentPage, AddComment } from "../../api/comment.js"
 import { AddReply } from "../../api/reply.js"
-
-const moment = require('../../lib/js/moment.min.js')
-
 import Toast from '../../utils/toast.js'
+import { throttle } from '../../utils/index.js'
+
+const moment = require('../../lib/moment.min.js')
 
 const app = getApp();
+
+// 监听滚动节流
+const scrollThrottle = throttle(func => func(), 100, { trailing: true })
+
+// 容器高度
+let containerHeight = 0;
+
+// 内容高度
+let contentHeight = 0;
+
+// 最近一次的scrollTop值
+let lastScrollVal = 0;
+
+// 自动隐藏定时器
+let hideTimer = null;
+
+// 最大的scrollTop值
+let scrollMax = 0;
 
 // type为1代表是发起一级回复（即回复评论），type为2代表是发起二级回复（即对回复进行回复）
 let type;
@@ -30,11 +48,87 @@ Page({
     showTextarea: false,
     dialogTitle: '评论',
     placeholder: '请输入评论',
-    content: ''
+    content: '',
+    isShowScrollIcon: false,
+    direction: 'down',
+    scrollTopVal: 0
   },
   onLoad(query) {
     id = query.id
     this.getArticle(id, query.title)
+  },
+  onReady() {
+    this.getContainerHeight();
+  },
+  getContainerHeight() {
+    const selectQuery = this.createSelectorQuery()
+    selectQuery.select('.view-scroll').boundingClientRect()
+    selectQuery.exec(function(res){
+      containerHeight = res[0].height;
+    })
+  },
+  onScroll(e) {
+    scrollThrottle(() => {
+      let direction = e.detail.scrollTop > lastScrollVal ? 'down' : 'up'
+      lastScrollVal = e.detail.scrollTop;
+      let currScrollTop = e.detail.scrollTop
+      // 预留50px，进入临界区时，自动调整方向
+      if (currScrollTop <= 50) {
+        direction = 'down'
+      } else if (currScrollTop >= scrollMax - 50 && this.data.comments.length === this.data.total) {
+        // 底部判断要特殊一点，因为可能数据未加载完
+        direction = 'up'
+      }
+      this.setData({
+        isShowScrollIcon: true,
+        direction
+      })
+      this.setHideTimer();
+    })
+  },
+  setHideTimer() {
+    this.clearHideTimer();
+    hideTimer = setTimeout(() => {
+      this.setData({
+        isShowScrollIcon: false
+      })
+    }, 5000)
+  },
+  clearHideTimer() {
+    if (hideTimer) {
+      clearTimeout(hideTimer)
+    }
+  },
+  scrollJump() {
+    if (this.data.direction === 'down') {
+      // 如果当前滑动方向是向下，设置scrollTop的值为scrollMax
+      let data = { scrollTopVal: scrollMax }
+      if (this.data.comments.length === this.data.total) {
+        // 如果数据已经加载完毕，最后调整滑动方向为up
+        data.direction = 'up'
+      }
+      this.setData(data)
+    } else {
+      // 如果当前滑动方向是向上
+      this.setData({
+        scrollTopVal: 0,
+        direction: 'down'
+      })
+    }
+  },
+  updateContentHeight() {
+    const selectQuery = this.createSelectorQuery()
+    selectQuery.select('.mt-navbar').boundingClientRect()
+    selectQuery.exec(function(res){
+      console.log('content:', res)
+      contentHeight = res[0].height;
+      scrollMax = contentHeight - containerHeight;
+    })
+  },
+  onImgLoad() {
+    wx.nextTick(() => {
+      this.updateContentHeight();
+    })
   },
   getArticle(id, title) {
     GetArticleDetail({ id }).then(res => {
@@ -43,6 +137,7 @@ Page({
         md,
         title
       })
+      this.updateContentHeight();
       this.getCommentList()
     })
   },
@@ -81,6 +176,7 @@ Page({
         }
       }
       this.setData(data);
+      this.updateContentHeight();
     }).finally(() => {
       wx.hideLoading()
     })
@@ -194,8 +290,5 @@ Page({
         Toast.simple('回复成功，请耐心等待审核')
       })
     }
-  },
-  onBack() {
-    wx.navigateBack()
   }
 })

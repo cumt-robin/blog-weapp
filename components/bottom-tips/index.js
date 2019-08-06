@@ -9,11 +9,11 @@ Component({
     },
     top: {
       type: String,
-      value: '15px'
+      value: '30rpx'
     },
     bottom: {
       type: String,
-      value: '15px'
+      value: '30rpx'
     },
     fontSize: {
       type: String

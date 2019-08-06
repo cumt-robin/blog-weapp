@@ -9,15 +9,15 @@ page {
 }
 
 .cell-icon {
-  width: 18px;
-  height: 18px;
+  width: 36rpx;
+  height: 36rpx;
 }
 
 .cell-title {
-  margin-left: 5px;
+  margin-left: 10rpx;
   color: #333;
 }
 
 .cell-content {
-  margin-left: 10px;
+  margin-left: 20rpx;
 }

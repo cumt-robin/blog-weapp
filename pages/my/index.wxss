@@ -3,17 +3,17 @@
 }
 
 .avatar {
-  width: 60px;
-  height: 60px;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 100%;
 }
 
 .nickname {
   vertical-align:top;
   display:inline-block;
-  margin-left:10px;
-  margin-top:10px;
-  font-size:16px;
+  margin-left:20rpx;
+  margin-top:20rpx;
+  font-size:32rpx;
 }
 
 .cell-wrap {
@@ -23,11 +23,11 @@
 }
 
 .cell-icon {
-  width: 18px;
-  height: 18px;
+  width: 36rpx;
+  height: 36rpx;
 }
 
 .cell-title {
-  margin-left: 5px;
+  margin-left: 10rpx;
   color: #333;
 }

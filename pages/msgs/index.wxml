@@ -2,6 +2,9 @@
   class="view-scroll"
   scroll-y
   enable-back-to-top
+  scroll-with-animation
+  scroll-top="{{scrollTopVal}}"
+  bindscroll="onScroll"
   bindscrolltolower="onScrollToLower">
   <van-nav-bar
     title="留言板"
@@ -12,7 +15,6 @@
   <view class='mt-navbar'>
     <text class='msgs-stats'>已有<text class='user-count'>{{userCount}}</text>人在这留下了足迹</text>
     <text class='msgs-stats'>留言总数：<text class='user-count'>{{commentTotal}}</text>条</text>
-    <image class="icon-comment" src="/assets/img/comment_root.svg" bind:tap="onShowComment"/>
     <view class="card-comment-wrap" bindshowReply="onShowReply">
       <van-cell
         wx:for="{{comments}}"
@@ -29,13 +31,22 @@
   </view>
 </scroll-view>
 
+<view class="aside-bar">
+  <view class="item-wrap" hidden="{{!isShowScrollIcon}}" bind:tap="scrollJump">
+    <image class="icon-aside icon-scroll {{direction === 'down' ? 'arrow-down' : 'arrow-up'}}" src="/assets/img/arrow-down.svg" />
+  </view>
+  <view class="item-wrap" bind:tap="onShowComment">
+    <image class="icon-aside anim-pulse" src="/assets/img/comment_root.svg"/>
+  </view>
+</view>
+
 <van-dialog
   id="van-dialog"
   use-slot
   title="{{dialogTitle}}"
   show="{{showTextarea}}"
   show-cancel-button
-  asyncClose="{{true}}"
+  asyncClose
   bind:cancel="onCancel"
   bind:confirm="onConfirmReply"
 >

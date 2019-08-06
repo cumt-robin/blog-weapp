@@ -20,8 +20,10 @@
 
     <van-panel title="致谢！">
       <view class='content-wrap'>
-        <text class='content'>如果您觉得我的小程序还不错，可以去留言区支持一下，谢谢啦</text>
+        <text class='content'>如果您觉得我的小程序还不错，请为该小程序点赞，也可以留言表示支持哦！</text>
       </view>
+      <image class="img-guide" src="http://qncdn.wbjiang.cn/weapp%E7%82%B9%E8%B5%9E%E6%AD%A5%E9%AA%A41.jpg" mode="aspectFit"/>
+      <image class="img-guide" src="http://qncdn.wbjiang.cn/weapp%E7%82%B9%E8%B5%9E%E6%AD%A5%E9%AA%A42.jpg" mode="aspectFit"/>
     </van-panel>
   </view>
 </view>
