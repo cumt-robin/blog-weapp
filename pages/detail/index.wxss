@@ -1,3 +1,7 @@
+.mt-navbar {
+  padding-top: 88rpx;
+}
+
 .bg-white {
   background-color: #fff;
 }
@@ -28,4 +32,74 @@
 
 .card-comment-wrap {
   margin-top: 20rpx;
+}
+
+.van-icon.icon-more {
+  font-size: 48rpx;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.stats-wrap {
+  position: relative;
+  padding: 20rpx 40rpx;
+  display: flex;
+  background-color: #f2f2f2;
+  box-shadow: 0 4rpx 8rpx rgba(7, 17, 27, 0.06);
+}
+
+.stats-content {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.author {
+  color: #2f2f2f;
+  font-size: 32rpx;
+  margin-left: 8rpx;
+}
+
+.update-time {
+  margin: 0 20rpx;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 100%;
+}
+
+.stats-icon {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+
+.stats-txt {
+  font-size: 24rpx;
+  color: #969696;
+}
+
+.stats-txt+.stats-icon {
+  margin-left: 20rpx;
+}
+
+.poster {
+  width: 100%;
+  margin-top: 16rpx;
+  box-shadow: 0 32rpx 64rpx rgba(7, 17, 27, 0.06);
+  animation: fade-in .4s ease-in forwards;
+  background-color: transparent;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: .5;
+    transform: scale(.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

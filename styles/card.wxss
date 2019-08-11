@@ -58,6 +58,7 @@
   padding: 20rpx 8rpx;
   border-radius: 20rpx;
   margin-bottom: 40rpx;
+  box-shadow: 0 18rpx 24rpx rgba(7, 17, 27, 0.06);
 }
 
 .card-comment {

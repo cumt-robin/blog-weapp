@@ -8,6 +8,9 @@
     "bottom-tips": "/components/bottom-tips/index",
     "card-comment": "/components/card-comment/index",
     "van-dialog": "vant-weapp/dialog/index",
-    "van-field": "vant-weapp/field/index"
+    "van-field": "vant-weapp/field/index",
+    "van-icon": "vant-weapp/icon/index",
+    "van-row": "vant-weapp/row/index",
+    "van-col": "vant-weapp/col/index"
   }
 }

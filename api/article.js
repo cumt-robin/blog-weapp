@@ -9,3 +9,5 @@ export const GetArticlePage = params => api.get(`${namespace}/page`, params);
 export const GetArticleDetail = params => api.get(`${namespace}/detail`, params);
 
 export const GetArticlesByCategory = params => api.get(`${namespace}/page_by_category`, params);
+
+export const UpdateReadNum = params => api.put(`${namespace}/update_read_num`, params);

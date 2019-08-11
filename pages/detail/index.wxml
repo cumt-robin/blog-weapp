@@ -7,12 +7,31 @@
     bindscroll="onScroll"
     bindscrolltolower="onScrollToLower">
     <van-nav-bar
-      title="{{title}}"
+      title="{{article.article_name}}"
       fixed
-      safe-area-inset-top="{{false}}"
-    />
+      safe-area-inset-top="{{false}}">
+      <van-icon name="ellipsis" slot="right" custom-class="icon-more" bind:click="onClickMore"/>
+    </van-nav-bar>
     <view class="mt-navbar">
-      <wemark md="{{md}}" link highlight type="wemark" bind:imgload="onImgLoad"></wemark>
+
+      <view class="stats-wrap">
+        <image class="avatar" src="http://qncdn.wbjiang.cn/wechat_avatar.jpg" />
+        <view class="stats-content">
+          <text class="author">{{article.author}}</text>
+          <text class="stats-txt update-time">更新于{{article.updateTime}}</text>
+          <text class="stats-txt">阅读 {{article.read_num}}</text>
+          <view>
+            <image class="stats-icon" src="/assets/img/category.svg" />
+            <text class="stats-txt">{{article.categoryNames}}</text>
+            <image class="stats-icon" src="/assets/img/tag.svg" />
+            <text class="stats-txt">{{article.tagNames}}</text>
+          </view>
+        </view>
+      </view>
+
+      <image class="poster" mode="aspectFit" src="{{article.poster}}"/>
+
+      <wemark md="{{article.article_text}}" link highlight type="wemark" bind:imgload="onImgLoad"></wemark>
 
       <view wx:if="{{total > 0}}">
         <view class="title-wrap">

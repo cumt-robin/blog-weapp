@@ -1,4 +1,4 @@
-import { GetArticleDetail } from "../../api/article.js"
+import { GetArticleDetail, UpdateReadNum } from "../../api/article.js"
 import { GetCommentPage, AddComment } from "../../api/comment.js"
 import { AddReply } from "../../api/reply.js"
 import Toast from '../../utils/toast.js'
@@ -35,11 +35,11 @@ let parent_id = null;
 
 let id;
 
+let reportTimer = null;
+
 Page({
   data: {
     isIphonex: app.globalData.isIphonex,
-    md: '',
-    title: '',
     comments: [],
     total: 0,
     pageNo: 1,
@@ -51,14 +51,23 @@ Page({
     content: '',
     isShowScrollIcon: false,
     direction: 'down',
-    scrollTopVal: 0
+    scrollTopVal: 0,
+    article: {}
   },
   onLoad(query) {
-    id = query.id
+    id = Number(query.id)
     this.getArticle(id, query.title)
+    this.startReportTimer();
   },
   onReady() {
     this.getContainerHeight();
+  },
+  onUnload() {
+    this.clearHideTimer();
+    this.clearReportTimer();
+  },
+  onClickMore() {
+
   },
   getContainerHeight() {
     const selectQuery = this.createSelectorQuery()
@@ -120,7 +129,6 @@ Page({
     const selectQuery = this.createSelectorQuery()
     selectQuery.select('.mt-navbar').boundingClientRect()
     selectQuery.exec(function(res){
-      console.log('content:', res)
       contentHeight = res[0].height;
       scrollMax = contentHeight - containerHeight;
     })
@@ -130,12 +138,15 @@ Page({
       this.updateContentHeight();
     })
   },
-  getArticle(id, title) {
+  getArticle(id) {
     GetArticleDetail({ id }).then(res => {
-      let md = res.data.article_text;
+      let data = res.data;
+      let updateTime = data.update_time || data.create_time
+      data.updateTime = moment(updateTime).format('YYYY.MM.DD HH:mm')
+      data.categoryNames = data.categories.map(item => item.categoryName).join(' ')
+      data.tagNames = data.tags.map(item => item.tagName).join(' ')
       this.setData({
-        md,
-        title
+        article: data
       })
       this.updateContentHeight();
       this.getCommentList()
@@ -289,6 +300,20 @@ Page({
         this.getCommentList();
         Toast.simple('回复成功，请耐心等待审核')
       })
+    }
+  },
+  /**
+   * @description 停留超过10s，则阅读数+1
+   */
+  startReportTimer() {
+    clearTimeout(reportTimer);
+    reportTimer = setTimeout(() => {
+      UpdateReadNum({ id })
+    }, 10000);
+  },
+  clearReportTimer() {
+    if (reportTimer) {
+      clearTimeout(reportTimer)
     }
   }
 })
