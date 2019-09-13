@@ -29,7 +29,7 @@
         </view>
       </view>
 
-      <image class="poster" mode="aspectFit" src="{{article.poster}}"/>
+      <image class="poster" mode="aspectFill" src="{{article.poster}}"/>
 
       <wemark md="{{article.article_text}}" link highlight type="wemark" bind:imgload="onImgLoad"></wemark>
 

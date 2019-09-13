@@ -1,5 +1,3 @@
-import { getType } from "./index.js"
-
 function finallyConstructor(callback) {
   var constructor = this.constructor;
   return this.then(
@@ -16,6 +14,6 @@ function finallyConstructor(callback) {
   );
 }
 
-if (getType(Promise.prototype['finally']) !== 'function') {
+if (typeof Promise.prototype['finally'] !== 'function') {
   Promise.prototype['finally'] = finallyConstructor;
 }

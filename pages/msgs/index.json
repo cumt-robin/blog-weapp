@@ -6,6 +6,7 @@
     "bottom-tips": "/components/bottom-tips/index",
     "card-comment": "/components/card-comment/index",
     "van-dialog": "vant-weapp/dialog/index",
-    "van-field": "vant-weapp/field/index"
+    "van-field": "vant-weapp/field/index",
+    "van-checkbox": "vant-weapp/checkbox/index"
   }
 }

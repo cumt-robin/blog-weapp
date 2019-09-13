@@ -2,7 +2,8 @@ import { GetArticleDetail, UpdateReadNum } from "../../api/article.js"
 import { GetCommentPage, AddComment } from "../../api/comment.js"
 import { AddReply } from "../../api/reply.js"
 import Toast from '../../utils/toast.js'
-import { throttle } from '../../utils/index.js'
+
+import { throttle } from "weapp-utils"
 
 const moment = require('../../lib/moment.min.js')
 

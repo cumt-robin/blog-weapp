@@ -6,7 +6,7 @@ import { AddReply } from "../../api/reply.js"
 
 import Toast from '../../utils/toast.js'
 
-import { throttle } from '../../utils/index.js'
+import { throttle } from "weapp-utils"
 
 const app = getApp();
 
@@ -53,7 +53,8 @@ Component({
     content: '',
     isShowScrollIcon: false,
     direction: 'down',
-    scrollTopVal: 0
+    scrollTopVal: 0,
+    acceptEmail: true
   },
   lifetimes: {
     attached() {
@@ -210,6 +211,9 @@ Component({
         dialogTitle: '留言',
         placeholder: '请输入留言'
       })
+    },
+    onAcceptEmailChange(e) {
+      console.log(e)
     },
     onShowReply(e) {
       if (!app.globalData.userInfo) {

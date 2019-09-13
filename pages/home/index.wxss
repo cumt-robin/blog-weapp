@@ -1,1 +1,4 @@
 /* pages/home/index.wxss */
+.content-wrap {
+    background-color: transparent;
+}

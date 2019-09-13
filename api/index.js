@@ -1,4 +1,4 @@
-import { merge } from '../utils/index.js'
+import { merge } from "weapp-utils"
 import Toast from "../utils/toast.js"
 
 const BASE_URL = 'https://blog.wbjiang.cn/api'

@@ -4,7 +4,7 @@
     class='img-poster'
     wx:if="{{item.poster}}"
     lazy-load
-    mode="aspectFit"
+    mode="aspectFill"
     src="{{item.poster}}">
   </image>
 </view>

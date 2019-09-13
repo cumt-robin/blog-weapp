@@ -1,6 +1,6 @@
 {
   "name": "mp-blog",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Tusi's blog miniprogram",
   "main": "app.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "Tusi",
   "license": "ISC",
   "dependencies": {
-    "vant-weapp": "^0.5.16"
+    "vant-weapp": "^0.5.16",
+    "weapp-utils": "^1.0.1"
   }
 }

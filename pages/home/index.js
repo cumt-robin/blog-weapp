@@ -2,7 +2,7 @@ import Toast from '../../utils/toast.js'
 
 import { GetArticlePage } from '../../api/article.js'
 import { GetWeappBanners } from '../../api/banner.js'
-import { debounce, throttle } from '../../utils/index.js'
+import { debounce, throttle } from "weapp-utils"
 
 // 监听获得焦点防抖
 const focusDebounce = debounce(fc => {
