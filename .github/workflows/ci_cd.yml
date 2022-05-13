@@ -34,7 +34,6 @@ jobs:
           ${{ runner.os }}-
     - name: Install Dependency
       run: |
-        npm config set registry https://registry.npmmirror.com
         npm install
 
   deploy:
