@@ -38,6 +38,7 @@ jobs:
         npm install
 
   deploy:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Deploy To Wechat Miniprogram Platform
