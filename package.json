@@ -4,7 +4,6 @@
   "description": "Tusi's blog miniprogram",
   "main": "app.js",
   "scripts": {
-    "deploy": "node ./scripts/ci.js --desc helloworld",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tusi",
