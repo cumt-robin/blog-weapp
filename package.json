@@ -4,6 +4,7 @@
   "description": "Tusi's blog miniprogram",
   "main": "app.js",
   "scripts": {
+    "deploy": "node ./scripts/ci.js --desc helloworld",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tusi",
@@ -11,5 +12,11 @@
   "dependencies": {
     "vant-weapp": "^0.5.16",
     "weapp-utils": "^1.0.1"
+  },
+  "devDependencies": {
+    "commander": "^9.2.0",
+    "minimist": "^1.2.6",
+    "miniprogram-ci": "^1.8.18",
+    "pkginfo": "^0.4.1"
   }
 }

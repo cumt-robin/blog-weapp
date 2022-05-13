@@ -3,7 +3,6 @@ node_modules/
 miniprogram_npm/
 dist/
 npm-debug.log*
-package-lock.json
 
 # Editor directories and files
 .idea
