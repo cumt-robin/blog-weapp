@@ -8,11 +8,15 @@ pkginfo(module)
 
 const { version } = module.exports
 
-program.option('--appid', "wechat miniprogram appid");
-program.option('--version', "wechat miniprogram version");
-program.option('--desc', "version description");
+program
+  .version('0.1.0')
+  .option('-id, --appid <char>', "wechat miniprogram appid")
+  .option('-v, --appversion <char>', "wechat miniprogram version")
+  .option('-d, --desc <char>', "version description")
+
 program.parse();
 const options = program.opts()
+console.log(options)
 
 const deploy = async () => {
   // 实例化项目
@@ -36,7 +40,7 @@ const deploy = async () => {
   const uploadResult = await ci.upload({
     project,
     // 版本号，优先用命令行版本号，其次用 package.json 的版本号
-    version: options.version || version,
+    version: options.appversion || version,
     // 版本描述
     desc: options.desc,
     // 配置信息

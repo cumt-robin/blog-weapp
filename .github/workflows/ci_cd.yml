@@ -41,5 +41,5 @@ jobs:
       run: |
           echo "$APPID $GITHUB_REF_NAME $GITHUB_REF_NAME版本"
           echo "$UPLOAD_KEY" > ./scripts/privatekey.key
-          node ./scripts/ci.js --appid $APPID --version $GITHUB_REF_NAME --desc "$GITHUB_REF_NAME版本"
+          node ./scripts/ci.js --appid $APPID --appversion $GITHUB_REF_NAME --desc "$GITHUB_REF_NAME版本"
     

@@ -3,6 +3,7 @@ node_modules/
 miniprogram_npm/
 dist/
 npm-debug.log*
+scripts/privatekey.key
 
 # Editor directories and files
 .idea
