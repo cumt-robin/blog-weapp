@@ -1,9 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/category/index",
-    "pages/msgs/index",
-    "pages/my/index",
     "pages/detail/index",
     "pages/search/index",
     "pages/category-detail/index",
